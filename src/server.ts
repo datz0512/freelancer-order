@@ -15,6 +15,7 @@ import { appRoutes } from '@order/routes';
 import { Channel } from 'amqplib';
 import { Server } from 'socket.io';
 import { createConnection } from '@order/queues/connection';
+import { consumeReviewFanoutMessages } from '@order/queues/order.consumer';
 
 const SERVER_PORT = 4006;
 const log: Logger = winstonLogger(`${config.ELASTIC_SEARCH_URL}`, 'orderService', 'debug');
@@ -64,6 +65,7 @@ const routesMiddleware = (app: Application): void => {
 
 const startQueues = async (): Promise<void> => {
   orderChannel = (await createConnection()) as Channel;
+  await consumeReviewFanoutMessages(orderChannel);
 };
 
 const startElasticSearch = (): void => {
