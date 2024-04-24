@@ -8,14 +8,14 @@ const orderId = async (req: Request, res: Response): Promise<void> => {
   res.status(StatusCodes.OK).json({ message: 'Order by orderId', order });
 };
 
-const sellerOrder = async (req: Request, res: Response): Promise<void> => {
+const sellerOrders = async (req: Request, res: Response): Promise<void> => {
   const orders: IOrderDocument[] = await getOrderBySellerId(req.params.sellerId);
   res.status(StatusCodes.OK).json({ message: 'Seller orders', orders });
 };
 
-const buyerOrder = async (req: Request, res: Response): Promise<void> => {
+const buyerOrders = async (req: Request, res: Response): Promise<void> => {
   const orders: IOrderDocument[] = await getOrderByBuyerId(req.params.buyerId);
   res.status(StatusCodes.OK).json({ message: 'Buyer orders', orders });
 };
 
-export { orderId, sellerOrder, buyerOrder };
+export { orderId, sellerOrders, buyerOrders };
