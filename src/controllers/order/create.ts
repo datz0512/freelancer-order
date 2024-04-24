@@ -28,6 +28,7 @@ const intent = async (req: Request, res: Response): Promise<void> => {
     customerId = customer.data[0].id;
   }
 
+  // Create payment intent
   let paymentIntent: Stripe.Response<Stripe.PaymentIntent>;
   if (customerId) {
     //the service charge is 5.5% of the purchase amount
