@@ -12,7 +12,7 @@ import { orderSchema } from '@order/schemes/order';
 import { BadRequestError, IOrderDocument } from '@datz0512/freelancer-shared';
 
 jest.mock('@order/services/order.service');
-jest.mock('@uzochukwueddie/jobber-shared');
+jest.mock('@datz0512/freelancer-shared');
 jest.mock('@order/schemes/order');
 jest.mock('@elastic/elasticsearch');
 
@@ -72,7 +72,7 @@ describe('Order Controller', () => {
       );
 
       order(req, res).catch(() => {
-        expect(BadRequestError).toHaveBeenCalledWith('This is an error message', 'Create order() method');
+        expect(BadRequestError).toHaveBeenCalledWith('This is an error message', 'Create order() method error:');
       });
     });
 

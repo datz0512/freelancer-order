@@ -64,7 +64,7 @@ const order = async (req: Request, res: Response): Promise<void> => {
 
   const order = await createOrder(orderData);
 
-  res.status(StatusCodes.CREATED).json({ message: 'Order created successfully', order });
+  res.status(StatusCodes.CREATED).json({ message: 'Order created successfully.', order });
 };
 
 export { intent, order };
