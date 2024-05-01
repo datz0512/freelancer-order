@@ -3,6 +3,19 @@ import cloudinary from 'cloudinary';
 
 dotenv.config({});
 
+if (process.env.ENABLE_APM === '1') {
+  require('elastic-apm-node').start({
+    serviceName: 'freelancer-order',
+    serverUrl: process.env.ELASTIC_APM_SERVER_URL,
+    secretToken: process.env.ELASTIC_APM_SECRET_TOKEN,
+    environment: process.env.NODE_ENV,
+    active: true,
+    captureBody: 'all',
+    errorOnAbortedRequests: true,
+    captureErrorLogStackTraces: 'always'
+  });
+}
+
 class Config {
   public DATABASE_URL: string | undefined;
   public GATEWAY_JWT_TOKEN: string | undefined;
